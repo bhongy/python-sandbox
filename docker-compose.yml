@@ -1,6 +1,9 @@
-version: '3'
+version: "3.2"
 services:
   python_dev:
     build: .
     volumes:
-      - ./app:/app
+      - type: bind
+        source: ./app
+        target: /app
+        read_only: true
