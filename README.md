@@ -1,6 +1,9 @@
 ## Start
 
 ```sh
+# manually run when Dockerfile changes
+docker-compose build
+# run one-off command - i.e. `sh`
 docker-compose run --rm python_dev sh
 ```
 
