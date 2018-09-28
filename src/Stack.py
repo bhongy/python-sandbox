@@ -10,13 +10,13 @@ note: I don't care for "push" being duplicated (duplication of something simple 
 
 
 class Empty:
-    def depth():
+    def depth(self):
         return 0
 
-    def top():
+    def top(self):
         raise ValueError("Cannot read top element from an empty stack")
 
-    def pop():
+    def pop(self):
         raise ValueError("Cannot pop an empty stack")
 
     def push(self, new_top):
@@ -26,20 +26,20 @@ class Empty:
 
 class NonEmpty:
     def __init__(self, new_top, previous):
-        self.top = new_top
-        self.tail = previous
+        self._top = new_top
+        self._tail = previous
 
     def depth(self):
         # O(n) time
-        return 1 + self.tail.depth()
+        return 1 + self._tail.depth()
 
     def top(self):
         # O(1) time
-        return self.top
+        return self._top
 
     def pop(self):
         # O(1) time
-        return self.tail
+        return self._tail
 
     def push(self, new_top):
         # O(1) time

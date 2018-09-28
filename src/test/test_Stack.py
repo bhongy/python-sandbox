@@ -1,4 +1,4 @@
-import src.Stack
+from src import Stack
 
 def set_up_non_empty_stack():
     return Stack.Empty().push("orange").push("banana")

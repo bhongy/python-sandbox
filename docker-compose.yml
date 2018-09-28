@@ -4,6 +4,8 @@ services:
     build: .
     volumes:
       - type: bind
-        source: ./app
-        target: /app
+        source: ./src
+        target: /usr/app/src
         read_only: true
+    stdin_open: true # -i
+    tty: true # -t
