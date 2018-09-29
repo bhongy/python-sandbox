@@ -36,3 +36,25 @@ class TestNonEmptyStack:
 
     def test_top(self):
         assert self.stack.top() == "banana"
+
+    def test_pop_returns_new_stack_without_previous_top(self):
+        new_stack = self.stack.pop()
+        assert new_stack.depth() == 1
+        assert new_stack.top() == "orange"
+
+    def test_pop_is_immutable(self):
+        self.stack.pop()
+        old_stack = self.stack
+        assert old_stack.depth() == 2
+        assert old_stack.top() == "banana"
+
+    def test_push_returns_new_stack_with_new_element_on_top(self):
+        new_stack = self.stack.push("raspberry")
+        assert new_stack.depth() == 3
+        assert new_stack.top() == "raspberry"
+
+    def test_push_is_immutable(self):
+        self.stack.push("raspberry")
+        old_stack = self.stack
+        assert old_stack.depth() == 2
+        assert old_stack.top() == "banana"
