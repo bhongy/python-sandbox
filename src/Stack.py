@@ -2,10 +2,14 @@
 stack = Stack.Empty()
 stack = stack.push("orange").push("banana")
 
-note: I don't care for "push" being duplicated (duplication of something simple is fine)
-      because I prefer them to be simple, decoupled
-      creating Base class with push method that both Empty and NonEmpty inherits from
-      introduces a big amount of indirection for little gain in DRY
+note:
+    "push" being duplicated across Empty and NonEmpty is fine
+    I prefer them to be simple and decoupled.
+
+    duplication is a sign that the design can be improved
+    but naively creating a Base class with a push method
+    that both Empty and NonEmpty inherits from
+    introduces a layer of indirection for little gain from DRY-ing
 """
 
 
@@ -14,14 +18,20 @@ class Empty:
         return 0
 
     def top(self):
-        raise ValueError("Cannot read top element from an empty stack")
+        raise EmptyStackError("Cannot read top element from an empty stack")
 
     def pop(self):
-        raise ValueError("Cannot pop an empty stack")
+        raise EmptyStackError("Cannot pop an empty stack")
 
     def push(self, new_top):
         # O(1) time
         return NonEmpty(new_top, self)
+
+
+class EmptyStackError(Exception):
+    def __init__(self, error_message):
+        # super(EmptyStackError, self).__init__()
+        Exception.__init__(self, error_message)
 
 
 class NonEmpty:
